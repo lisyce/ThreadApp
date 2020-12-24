@@ -6,10 +6,16 @@ ThreadApp: Home
 
 {% block content %}
 
+<h2>My Collection</h2>
+
+<ul>
 {% for thread in threads %}
+<li>
 {{thread.brand}}
 {{thread.id_number}}<br>
-{{thread.added_by}}<br> <br>
+{{thread.added_by}}
+</li> <br>
 {% endfor %}
+</ul>
 
 {% endblock %}
