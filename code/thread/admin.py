@@ -1,5 +1,8 @@
 from django.contrib import admin
-from .models import Thread
+from . import models
 
-# Register your models here.
-admin.site.register(Thread)
+# Register your models here
+class AuthorAdmin(admin.ModelAdmin):
+    list_display = ('brand', 'id_number', 'style', 'color_name', 'length_owned', 'added_by')
+
+admin.site.register(models.Thread, AuthorAdmin)

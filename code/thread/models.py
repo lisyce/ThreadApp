@@ -18,6 +18,9 @@ class Thread (models.Model):
     length_owned = models.DecimalField(max_digits=50, decimal_places=2)
     added_by = models.ForeignKey(User, on_delete=models.CASCADE)
 
+    class Meta:
+        ordering = ('brand',)
+
     def __str__(self):
         return ('{0} {1} #{2}: {3}. {4} meters owned.'.format(self.brand, self.style, self.id_number, self.color_name, self.length_owned))    
  

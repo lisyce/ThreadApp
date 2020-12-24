@@ -5,5 +5,11 @@ ThreadApp: Home
 {% endblock %}
 
 {% block content %}
-<h1>Home</h1>
+
+{% for thread in threads %}
+{{thread.brand}}
+{{thread.id_number}}<br>
+{{thread.added_by}}<br> <br>
+{% endfor %}
+
 {% endblock %}
