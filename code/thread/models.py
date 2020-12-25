@@ -5,9 +5,9 @@ from django.core.validators import MinValueValidator
 class Thread (models.Model):
     
     STYLES = (
-        ('embroidery floss', 'Embroidery Floss'),
-        ('craft cord', 'Craft Cord'),
-        ('waxed cord', 'Waxed Cord'),
+        ('Embroidery Floss', 'Embroidery Floss'),
+        ('Craft Cord', 'Craft Cord'),
+        ('Waxed Cord', 'Waxed Cord'),
     )
 
     brand = models.CharField(max_length=200)

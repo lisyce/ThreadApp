@@ -5,17 +5,37 @@ ThreadApp: Home
 {% endblock %}
 
 {% block content %}
+<!-- Overall Container -->
+<div class='container'>
+    <br>
+    <div class='row'>
+            <h3 class='display-6'>My Collection</h3>
+    </div>
+    <br>
+    <div class='row'>
+        <table class='table'>
+            <tr>
+                <th>Brand</th>
+                <th>Color Number</th>
+                <th>Color Name</th>
+                <th>Thread Type</th>
+                <th>Length Owned</th>
+                <th></th>
+            </tr>
 
-<h2>My Collection</h2>
+            {% for thread in threads %}
+                <tr>
+                    <td>{{thread.brand}}</td>
+                    <td>{{thread.id_number}}</td>
+                    <td>{{thread.color_name}}</td>
+                    <td>{{thread.style}}</td>
+                    <td>{{thread.length_owned}}</td>
+                </tr>
+            {% endfor %}
 
-<ul>
-{% for thread in threads %}
-<li>
-{{thread.brand}}
-{{thread.id_number}}<br>
-{{thread.added_by}}
-</li> <br>
-{% endfor %}
-</ul>
+        </table>
+    </div>
+
+</div>
 
 {% endblock %}
