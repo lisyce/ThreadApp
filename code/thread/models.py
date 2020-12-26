@@ -46,6 +46,7 @@ class Collection (models.Model):
     added_by = models.ForeignKey(User, on_delete=models.SET(get_deleted_user))
     status = models.CharField(max_length=200, choices=STATUS)
     threads = models.ManyToManyField(Thread)    
+    
     def __str__(self):
         return self.name
 

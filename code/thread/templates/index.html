@@ -9,7 +9,7 @@ ThreadApp: Home
 <div class='container'>
     <br>
     <div class='row'>
-            <h3 class='display-6'>My Collection</h3>
+        <h3 class='display-6'>My Threads</h3>
     </div>
     <br>
     <div class='row'>
@@ -34,6 +34,30 @@ ThreadApp: Home
             {% endfor %}
 
         </table>
+    </div>
+
+    <br>
+
+    <div class='row'>
+        <h3 class='display-6'>My Collections</h3>
+    </div>
+    <br>
+    <div class='row'>
+        <ul class='list-group list-group-flush'>
+        {% for collection in collections %}
+            <li class='list-group-item d-flex justify-content-between align-items-center'>
+                <strong>{{collection.name}}:</strong> 
+
+                <span>
+                    <!-- TODO list out all the threads separated by commas-->
+                    {% for thread in collection_threads %}
+                    {% endfor %}
+                </span> 
+
+                <span>{{collection.thread_count}} threads saved</span>
+            </li>
+        {% endfor %}
+        </ul>
     </div>
 
 </div>
