@@ -1,8 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
-from django.template.defaultfilters import slugify
-from django.db import IntegrityError
+from django.urls import reverse
 
 import uuid
 
@@ -29,9 +28,14 @@ class Thread (models.Model):
         ordering = ('brand',)
 
     def __str__(self):
-        return ('{0} {1} #{2}: {3}. {4} meters owned.'.format(self.brand, self.style, self.id_number, self.color_name, self.length_owned))    
+        return ('{0} {1} #{2}: {3}. {4} meters owned'.format(self.brand, self.style, self.id_number, self.color_name, self.length_owned))    
  
 class Collection (models.Model):   
+
+    #get only public collections
+    class PublicManager(models.Manager):
+        def get_queryset(self):
+            return super().get_queryset().filter(status='public')
 
     STATUS = (
         ('Public', 'Public'),
@@ -45,7 +49,12 @@ class Collection (models.Model):
     description = models.CharField(max_length=400)
     added_by = models.ForeignKey(User, on_delete=models.SET(get_deleted_user))
     status = models.CharField(max_length=200, choices=STATUS)
-    threads = models.ManyToManyField(Thread)    
+    threads = models.ManyToManyField(Thread)
+    objects = models.Manager() #default manager
+    public_manager = PublicManager()
+
+    def get_absolute_url(self):
+        return reverse('thread:collection_single', args=[self.slug])
     
     def __str__(self):
         return self.name

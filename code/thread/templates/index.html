@@ -43,21 +43,26 @@ ThreadApp: Home
     </div>
     <br>
     <div class='row'>
-        <ul class='list-group list-group-flush'>
-        {% for collection in collections %}
-            <li class='list-group-item d-flex justify-content-between align-items-center'>
-                <strong>{{collection.name}}:</strong> 
+       
+        <table class='table'>
 
-                <span>
-                    <!-- TODO list out all the threads separated by commas-->
-                    {% for thread in collection_threads %}
+            {% for collection in collections %}
+            <!-- what if this worked where you see like the first 5 colors then hit an arrow to show the rest-->
+            <tr>
+                <td><strong><a class='text-dark' href='{{collection.get_absolute_url}}'>{{collection.name}}:</a></strong></td>
+                <td>
+                    {% for thread in collection.threads.all %}
+                        {{thread.brand}} #{{thread.id_number}}, {{thread.color_name}}
+                        <br>
                     {% endfor %}
-                </span> 
+                </td> 
 
-                <span>{{collection.thread_count}} threads saved</span>
-            </li>
+                <td>{{collection.thread_count}} threads saved</td>
+            </tr>
         {% endfor %}
-        </ul>
+
+        </table>
+
     </div>
 
 </div>
