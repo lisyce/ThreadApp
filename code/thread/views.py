@@ -6,13 +6,16 @@ from .models import *
 def home(request):
 
     all_threads = Thread.objects.all()
+    #only threads that are owned
+    owned_threads = Thread.owned_manager.all()
+
     all_collections = Collection.objects.all().annotate(
         thread_count = Count('threads'),
     )
     #all public collections in database
     public_collections = Collection.public_manager.all()
 
-    return render(request, 'index.html', {'threads' : all_threads, 'collections' : all_collections})
+    return render(request, 'index.html', {'threads' : owned_threads, 'collections' : all_collections})
 
 def collection_single(request, collection):
     

@@ -9,6 +9,10 @@ def get_deleted_user():
     return get_user_model().objects.get_or_create(username='deleted')[0]
 
 class Thread (models.Model):
+
+    class OwnedManager(models.Manager):
+        def get_queryset(self):
+            return super().get_queryset().filter(length_owned__isnull=False)
     
     STYLES = (
         ('embroidery floss', 'Embroidery Floss'),
@@ -23,6 +27,8 @@ class Thread (models.Model):
     color_name = models.CharField(max_length=250, null=True)
     length_owned = models.DecimalField(max_digits=50, decimal_places=2, null=True)
     added_by = models.ForeignKey(User, on_delete=models.SET(get_deleted_user))
+    objects = models.Manager() #default manager
+    owned_manager = OwnedManager()
 
     class Meta:
         ordering = ('brand',)
