@@ -29,7 +29,11 @@ ThreadApp: Home
                     <td>{{thread.id_number}}</td>
                     <td>{{thread.color_name}}</td>
                     <td>{{thread.style}}</td>
-                    <td>{{thread.length_owned}}</td>
+                    {% if thread.length_owned %}
+                        <td>{{thread.length_owned}}</td>
+                    {% else %}
+                        <td>N/A</td>
+                    {% endif %}
                 </tr>
             {% endfor %}
 
