@@ -11,17 +11,17 @@ def get_deleted_user():
 class Thread (models.Model):
     
     STYLES = (
-        ('Embroidery Floss', 'Embroidery Floss'),
-        ('Craft Cord', 'Craft Cord'),
-        ('Waxed Cord', 'Waxed Cord'),
+        ('embroidery floss', 'Embroidery Floss'),
+        ('craft cord', 'Craft Cord'),
+        ('waxed cord', 'Waxed Cord'),
     )
 
     brand = models.CharField(max_length=200)
     style = models.CharField(max_length=200, choices=STYLES)
     #TODO make this validate numbers above 0
-    id_number = models.IntegerField()
-    color_name = models.CharField(max_length=250)
-    length_owned = models.DecimalField(max_digits=50, decimal_places=2)
+    id_number = models.CharField(max_length=20)
+    color_name = models.CharField(max_length=250, null=True)
+    length_owned = models.DecimalField(max_digits=50, decimal_places=2, null=True)
     added_by = models.ForeignKey(User, on_delete=models.SET(get_deleted_user))
 
     class Meta:
@@ -38,8 +38,8 @@ class Collection (models.Model):
             return super().get_queryset().filter(status='public')
 
     STATUS = (
-        ('Public', 'Public'),
-        ('Private', 'Private'),
+        ('public', 'Public'),
+        ('private', 'Private'),
     )
 
     #TODO at some point, create a way to generate a different slug 

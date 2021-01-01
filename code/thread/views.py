@@ -16,6 +16,6 @@ def home(request):
 
 def collection_single(request, collection):
     
-    collection = get_object_or_404(Collection, slug=collection, status='Public')
+    collection = get_object_or_404(Collection, slug=collection, status='public')
 
     return render(request, 'single_collection.html', {'collection' : collection})
