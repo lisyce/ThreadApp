@@ -19,21 +19,16 @@ ThreadApp: Home
                 <th>Color Number</th>
                 <th>Color Name</th>
                 <th>Thread Type</th>
-                <th>Length Owned</th>
-                <th></th>
+                <th>Meters Owned</th>
             </tr>
 
-            {% for thread in threads %}
+            {% for thread in owned_threads %}
                 <tr>
-                    <td>{{thread.brand}}</td>
-                    <td>{{thread.id_number}}</td>
-                    <td>{{thread.color_name}}</td>
-                    <td>{{thread.style}}</td>
-                    {% if thread.length_owned %}
-                        <td>{{thread.length_owned}} meters</td>
-                    {% else %}
-                        <td>N/A</td>
-                    {% endif %}
+                    <td>{{thread.owned_thread.brand}}</td>
+                    <td>{{thread.owned_thread.id_number}}</td>
+                    <td>{{thread.owned_thread.color_name}}</td>
+                    <td>{{thread.owned_thread.style}}</td>
+                    <td>{{thread.length_owned}}</td>
                 </tr>
             {% endfor %}
 
