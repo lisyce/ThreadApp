@@ -8,61 +8,70 @@ ThreadApp: Home
 <!-- Overall Container -->
 <div class='container'>
     <br>
-    <div class='row'>
-        <h3 class='display-6'>My Threads</h3>
+    <!-- Collections -->
+    <div class='container'>
+        <div class='row'>
+            <h3 class='display-6'>My Collections</h3>
+            <br>
+        </div>
+
+        <button type='button' id='add-collection' class='btn btn-outline-dark'>Add Collection</button>
+
+        {% for collection in collections %}
+            <div class='row'>
+                    <!-- what if this worked where you see like the first 5 colors then hit an arrow to show the rest-->
+                    <div class='col-3'><strong><a class='text-dark' href='{{collection.get_absolute_url}}'>{{collection.name}}:</a></strong></div>
+                    <div class='col-3'>
+                        {% for thread in collection.threads.all %}
+                            {{thread.brand}} #{{thread.id_number}}, {{thread.color_name}}
+                            <br>
+                        {% endfor %}
+                    </div>
+                    <div class='col-3'>{{collection.thread_count}} threads saved</div>
+                    <div class='col-3'><button type='button' class='btn btn-outline-dark btn-sm'>Edit</button>
+                            <button type='button' class='btn btn-outline-danger btn-sm'>Delete</button>
+                    </div>
+            </div>
+        {% endfor %}    
+
     </div>
-    <br>
-    <div class='row'>
-        <table class='table'>
-            <tr>
-                <th>Brand</th>
-                <th>Color Number</th>
-                <th>Color Name</th>
-                <th>Thread Type</th>
-                <th>Meters Owned</th>
-            </tr>
-
-            {% for thread in owned_threads %}
-                <tr>
-                    <td>{{thread.owned_thread.brand}}</td>
-                    <td>{{thread.owned_thread.id_number}}</td>
-                    <td>{{thread.owned_thread.color_name}}</td>
-                    <td>{{thread.owned_thread.style}}</td>
-                    <td>{{thread.length_owned}}</td>
-                </tr>
-            {% endfor %}
-
-        </table>
-    </div>
 
     <br>
 
-    <div class='row'>
-        <h3 class='display-6'>My Collections</h3>
-    </div>
-    <br>
-    <div class='row'>
-       
-        <table class='table'>
+    <!-- Thread List -->
+    <div class='container'>
+        <div class='row'>
+            <h3 class='display-6'>My Threads</h3>
+        </div>
+        <br>
+        <div class='row'>
+            <div class='col-12'>
+                <table class='table'>
+                    <tr>
+                        <th>Brand</th>
+                        <th>Color Number</th>
+                        <th>Color Name</th>
+                        <th>Thread Type</th>
+                        <th>Meters Owned</th>
+                        <th></th>
+                    </tr>
 
-            {% for collection in collections %}
-            <!-- what if this worked where you see like the first 5 colors then hit an arrow to show the rest-->
-            <tr>
-                <td><strong><a class='text-dark' href='{{collection.get_absolute_url}}'>{{collection.name}}:</a></strong></td>
-                <td>
-                    {% for thread in collection.threads.all %}
-                        {{thread.brand}} #{{thread.id_number}}, {{thread.color_name}}
-                        <br>
+                    {% for thread in owned_threads %}
+                        <tr>
+                            <td>{{thread.owned_thread.brand}}</td>
+                            <td>{{thread.owned_thread.id_number}}</td>
+                            <td>{{thread.owned_thread.color_name}}</td>
+                            <td>{{thread.owned_thread.style}}</td>
+                            <td>{{thread.length_owned}}</td>
+                            <td><button type='button' class='btn btn-outline-danger btn-sm'>Delete</button></td>
+                        </tr>
                     {% endfor %}
-                </td> 
 
-                <td>{{collection.thread_count}} threads saved</td>
-            </tr>
-        {% endfor %}
-
-        </table>
-
+                </table>
+            </div>
+        </div>
     </div>
+    <br>
 
 </div>
 

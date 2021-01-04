@@ -1,3 +1,8 @@
-a:visited {
+a, a:hover, a:visited {
     text-decoration: none;
+}
+
+#add-collection {
+    margin-top: 1%;
+    margin-bottom: 1%;
 }
