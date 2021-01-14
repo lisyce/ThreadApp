@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.db.models import Count
 from .models import *
+from .forms import *
 
 # Create your views here.
 def home(request):
@@ -18,8 +19,16 @@ def home(request):
     'owned_threads': all_owned_threads})
 
 
+def create_thread(request):
+    form = ThreadForm()
+    context = {'form':form}
+
+    return render(request, 'thread_form.html', context)
+
+    
 def collection_single(request, collection):
     
     collection = get_object_or_404(Collection, slug=collection, status='public')
 
     return render(request, 'single_collection.html', {'collection' : collection})
+

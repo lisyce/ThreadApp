@@ -32,6 +32,7 @@ ThreadApp: Home
                             <button type='button' class='btn btn-outline-danger btn-sm'>Delete</button>
                     </div>
             </div>
+            <hr>
         {% endfor %}    
 
     </div>
@@ -43,6 +44,11 @@ ThreadApp: Home
         <div class='row'>
             <h3 class='display-6'>My Threads</h3>
         </div>
+        <button type='button' class='btn btn-outline-dark'>
+            <a href='create_thread'>
+                Add Thread
+            </a>
+        </button>
         <br>
         <div class='row'>
             <div class='col-12'>
@@ -63,7 +69,10 @@ ThreadApp: Home
                             <td>{{thread.owned_thread.color_name}}</td>
                             <td>{{thread.owned_thread.style}}</td>
                             <td>{{thread.length_owned}}</td>
-                            <td><button type='button' class='btn btn-outline-danger btn-sm'>Delete</button></td>
+                            <td>
+                                <button type='button' class='btn btn-outline-dark btn-sm'>Edit</button>
+                                <button type='button' class='btn btn-outline-danger btn-sm'>Delete</button>
+                            </td>
                         </tr>
                     {% endfor %}
 
